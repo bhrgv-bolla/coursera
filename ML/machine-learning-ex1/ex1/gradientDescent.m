@@ -19,9 +19,9 @@ for iter = 1:num_iters
     h = X * theta;
     er = h - y;
     direction = er .* X;
-    gradient = sum(direction, 2) * alpha / m
+    gradient = sum(direction, 1) * alpha / m
     theta
-    theta = theta - gradient;
+    theta = theta - gradient';
 
 
 
