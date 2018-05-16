@@ -24,11 +24,10 @@ grad = zeros(size(theta));
 %x => 100*3
 %theta => 3*1
 %output => 100*1
-theta
 hypothesisBeforeSigmoid = X * theta;
 hypothesis = sigmoid(hypothesisBeforeSigmoid); % Theta transpose * x 
-falseNegatives = (1.-y)' * log(1-hypothesis)
-falsePositives = y' * log(hypothesis)
+falseNegatives = (1.-y)' * log(1-hypothesis);
+falsePositives = y' * log(hypothesis);
 
 costPartial = - (falsePositives + falseNegatives);
 J = costPartial ./ m;

@@ -15,7 +15,10 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
-
+innerValue = X * theta;
+hypothesis = sigmoid(innerValue);
+inference = @(x) (x>=0.5) * 1 + (x<0.5) * 0;
+p = inference(hypothesis);
 
 
 
