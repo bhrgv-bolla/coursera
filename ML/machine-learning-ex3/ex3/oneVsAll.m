@@ -15,7 +15,7 @@ n = size(X, 2);
 all_theta = zeros(num_labels, n + 1);
 
 % Add ones to the X data matrix
-X = [ones(m, 1) X];
+X = [ones(m, 1) X]; % add the 1 to the input. first colum ( m rows ) . 
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the following code to train num_labels
@@ -50,8 +50,15 @@ X = [ones(m, 1) X];
 %
 
 
+options = optimset('GradObj', 'on', 'MaxIter', 50); %Set to return the gradient object ( has cost and theta ); MaxIter limited to 50.
 
-
+for label = 1:num_labels
+  labely = (y == label); %Get all positives as 1 and negatives as 0
+  %initial_theta's
+  initial_theta = zeros(n+1, 1); % This is initial_theta for 1 label. Now you will num_labels such labels.
+  [theta] = fmincg(@(_theta) (lrCostFunction(_theta, X, labely, lambda)), initial_theta, options);
+  all_theta(label, :) = theta'; % add the theta for this label to all_theta. 
+endfor
 
 
 

@@ -30,7 +30,11 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+% all_theta => learned classifiers for all labels.
+% X => input examples. 
+% prediction => same size as X => m examples. 
 
+ 
 
 
 

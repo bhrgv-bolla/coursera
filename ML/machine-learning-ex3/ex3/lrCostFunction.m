@@ -37,9 +37,15 @@ grad = zeros(size(theta));
 %
 
 
+hypothesis = sigmoid(X * theta);
+J = ((-y'*log(hypothesis))-((1.-y)'*log(1-hypothesis)))./m;
+regularization = (lambda/(2*m))*(sum(theta.^2) - theta(1)^2); % remove the bias term. 
+J = J + regularization;
 
-
-
+grad = (X' * (hypothesis - y)); %1*4
+grad = grad ./ m;
+grad = grad + (lambda/m) .* theta;
+grad(1) = grad(1) - (lambda/m) * theta(1); % Don't regularize the bias term. 
 
 
 
