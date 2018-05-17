@@ -17,8 +17,16 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+innerValue = X * theta;
+hypothesis = sigmoid(innerValue);
+thetaSquare = sum(theta .^ 2) - theta(1) ^ 2; %remove the first element. 
+J = (-y' * log(hypothesis) - (1-y)' * log(1-hypothesis)) ./ m + (lambda / (2 * m)) * thetaSquare;
+regParam = (lambda/m) .* theta;
+grad = (((hypothesis - y)' * X) ./m);
+grad = grad + regParam';
 
 
+grad(1) = grad(1) - (lambda / m) * theta(1); % no regualrization for the first parameter which is 1. ( remember the dimensions are number fo features + 1)
 
 
 
