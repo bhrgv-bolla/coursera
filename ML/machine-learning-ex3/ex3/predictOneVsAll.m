@@ -30,13 +30,20 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-% all_theta => learned classifiers for all labels.
-% X => input examples. 
+% all_theta => learned classifiers for all labels. num_labels * (num_parameters + 1)
+% X => input examples. num_inferences * (num_parameters + 1)
 % prediction => same size as X => m examples. 
-
+% prediction is basically the max label index among all the 
  
 
 
+% X theta' gives num_inferences * num_labels
+
+p = X * all_theta';
+
+[max_values indices] = max(p, [], 2);
+
+p = indices;
 
 
 
